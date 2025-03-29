@@ -1,29 +1,36 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import SideBar from './Components/SideBar'; // Ton Sidebar
-// import HomePage from './pages/HomePage'; // Page d'accueil
-// import ArchivagePage from './pages/ArchivagePage'; // Page d'archivage
-// import ReportingPage from './pages/ReportingPage'; // Page reporting
-// import AlertingPage from './pages/AlertingPage'; // Page alerting
-// import SettingsPage from './pages/SettingsPage'; // Page paramètres
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Acceuille, Alerting, Archivage, Error, HomeLayout, Login, Reporting, Settings } from "./Pages";
+import ProtectedRoute from "./Components/ProtectedRoute"; // Protection des routes
+import GoogleRedirectHandler from "./Components/GoogleRedirectHandler";
+import Toremove from "./Components/Toremove";
+import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 
-const App = () => {
-  return (
-    <Router>
-      <div className="bg-gray-200 min-h-screen"> {/* Appliquer bg-gris sur toute l'app */}
-        <SideBar />
-        <div className="ml-48"> {/* Décalage du contenu par la largeur du Sidebar */}
-          <Routes>
-            {/* <Route path="/" element={<HomePage />} />
-            <Route path="/archivage" element={<ArchivagePage />} />
-            <Route path="/reporting" element={<ReportingPage />} />
-            <Route path="/alerting" element={<AlertingPage />} />
-            <Route path="/settings" element={<SettingsPage />} /> */}
-          </Routes>
-        </div>
-      </div>
-    </Router>
-  );
-};
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <ProtectedRoute />, // Empêche l'accès si non connecté
+    children: [
+      { path: "/acceuille", element: <Toremove /> },
+      { path: "/archivage", element: <Archivage /> },
+      { path: "/reporting", element: <Reporting /> },
+      { path: "/alerting", element: <Alerting /> },
+      { path: "/settings", element: <Settings /> },
+    ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/auth/google/callback", // Route qui récupère et stocke le token
+    element: <GoogleRedirectHandler />,
+  },
+]);
+
+function App() {
+  return  <PrimeReactProvider>
+            <RouterProvider router={router} />
+          </PrimeReactProvider>;
+}
 
 export default App;

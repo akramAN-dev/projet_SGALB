@@ -1,0 +1,8 @@
+export {default as Error} from './Error'
+export {default as HomeLayout} from './HomeLayout'
+export {default as Acceuille} from './Acceuille'
+export {default as Alerting} from './Alerting'
+export {default as Archivage} from './Archivage'
+export {default as Reporting} from './Reporting'
+export {default as Settings} from './Settings'
+export {default as Login} from './Login'
