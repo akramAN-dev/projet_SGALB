@@ -5,7 +5,7 @@ function HomeLayout() {
   return (
     <div className="bg-gray-200 min-h-screen flex">
       <SideBar /> {/* Affiche le Sidebar à gauche */}
-      <div className="ml-48 p-4 flex-1"> {/* Espace à droite pour le contenu */}
+      <div className="ml-5 mt-20 overflow-hidden"> {/* Espace à droite pour le contenu */}
         <Outlet /> {/* Affiche le contenu de la sous-route */}
       </div>
     </div>

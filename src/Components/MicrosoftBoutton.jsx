@@ -8,7 +8,7 @@ const MiscrosoftBoutton = () => {
     };
 
     return (
-        <div>
+        <div className='w-full'>
             <Button 
                 bgBtn="#1E1E1E" 
                 login={miscrosoftLogin} 

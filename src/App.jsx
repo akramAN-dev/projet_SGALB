@@ -3,7 +3,12 @@ import { Acceuille, Alerting, Archivage, Error, HomeLayout, Login, Reporting, Se
 import ProtectedRoute from "./Components/ProtectedRoute"; // Protection des routes
 import GoogleRedirectHandler from "./Components/GoogleRedirectHandler";
 import Toremove from "./Components/Toremove";
-import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
+import { PrimeReactProvider } from 'primereact/api';
+import 'primereact/resources/themes/lara-light-blue/theme.css';  // Thème (modifiable selon ton choix)
+import 'primereact/resources/primereact.min.css';  // Styles de base de PrimeReact
+import 'primeicons/primeicons.css';  // Icônes de PrimeReact
+import { SidebarProvider } from "./Contex/SideBarContex";
+
 
 const router = createBrowserRouter([
   {
@@ -29,7 +34,9 @@ const router = createBrowserRouter([
 
 function App() {
   return  <PrimeReactProvider>
-            <RouterProvider router={router} />
+            <SidebarProvider>
+              <RouterProvider router={router} />
+            </SidebarProvider>
           </PrimeReactProvider>;
 }
 

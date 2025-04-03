@@ -5,9 +5,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'; // Utilisatio
 import HpsLogo from "../assets/images/HpsLogo.png";
 import { logoutUser } from '../Features/user/userSlice';
 import { useDispatch } from 'react-redux';
+import { useSidebar } from '../Contex/SideBarContex';
 
 const SideBar = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const { collapsed, setCollapsed } = useSidebar(); // Utilisation du contexte  
   const location = useLocation();
   const toggleSidebar = () => {
     setCollapsed(!collapsed);
@@ -39,8 +40,8 @@ const SideBar = () => {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <div className={`${collapsed ? 'w-16' : 'w-48'} h-screen bg-white border-r border-gray-200 flex flex-col relative transition-all duration-300 ease-in-out`}>
-      {/* Toggle button */}
+    <div className={`${collapsed ? 'w-16' : 'w-48'} relative h-screen bg-white border-r border-gray-200 flex flex-col transition-all duration-300 ease-in-out lg:sticky sm:sticky md:sticky top-0`}>
+
       <button 
         onClick={toggleSidebar}
         className="absolute -right-3 top-12  bg-[#735B9D] rounded-full p-1 border border-gray-200 shadow-md z-10 "

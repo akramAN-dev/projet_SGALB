@@ -7,8 +7,7 @@ const GoogleBoutton = () => {
     };
 
     return (
-        <div>
-          
+        <div className='w-full'>
             <Button 
                 bgBtn="#CB2027" 
                 login={googleLogin} 
